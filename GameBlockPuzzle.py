@@ -187,7 +187,7 @@ def draw_text_middle(surface, text, size, color):
     font = pygame.font.SysFont("comicsans", size, bold=True)
     label = font.render(text, 1, color)
 
-    surface.blit(label, (top_left_x + play_width /2 - (label.get_width()/2), top_left_y + play_height/2 - label.get_height()/2))
+    surface.blit(label, (top_left_x + play_width / 2 - label.get_width() / 2, 10))
 
 def draw_grid(surface, grid):
     sx = top_left_x
@@ -273,7 +273,7 @@ def draw_window(surface, grid, score=0, last_score = 0):
 
     # Hiển thị điểm cao
     label = font.render('High Score: ' + last_score, 1, (255,255,255))
-    sx = top_left_x - 200
+    sx = top_left_x - 250
     sy = top_left_y + 200
     surface.blit(label, (sx + 20, sy + 160))
 
@@ -286,7 +286,10 @@ def draw_window(surface, grid, score=0, last_score = 0):
     draw_grid(surface, grid)
 
     # Hướng dẫn thao tác
-    draw_text_middle(surface, "Move: Arrows | Rotate: UP | Fast Drop: DOWN", 20, (255, 255, 255))
+
+    stringGuide = "Move: Arrows | Rotate: UP | Fast Drop: DOWN"
+
+    draw_text_middle(surface,stringGuide , 20, (255, 255, 255))
 
 def main(win):
     last_score = max_score()
