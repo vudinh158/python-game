@@ -126,7 +126,6 @@ shapes = [S, Z, I, O, J, L, T]
 
 # Tạo màu ngẫu nhiên khi spawn shape mới
 
-
 def random_color():
     return tuple(random.randint(0, 255) for _ in range(3))
 
@@ -139,9 +138,9 @@ class Piece(object):
         self.color = random_color()  # Thay đổi để tạo màu ngẫu nhiên cho mỗi shape
         self.rotation = 0
 
-
+# tạo lưới chia từng ô vuông mỗi ô vuông tương ứng với 1 block
 def create_grid(locked_pos={}):
-    grid = [[(0, 0, 0) for _ in range(10)] for _ in range(20)]
+    grid = [[(0, 0, 0) for _ in range(10)] for _ in range(20)] #set màu đen cho 1 block
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             if (j, i) in locked_pos:
@@ -149,7 +148,7 @@ def create_grid(locked_pos={}):
                 grid[i][j] = c
     return grid
 
-
+# hàm xoay khối shape mỗi khi mà nhấn phím mũi tên lên
 def convert_shape_format(shape):
     positions = []
     format = shape.shape[shape.rotation % len(shape.shape)]
@@ -165,7 +164,7 @@ def convert_shape_format(shape):
 
     return positions
 
-
+# kiểm tra xem các shape có hợp lệ không
 def valid_space(shape, grid):
     accepted_pos = [[(j, i) for j in range(10) if grid[i]
                      [j] == (0, 0, 0)] for i in range(20)]
@@ -176,9 +175,8 @@ def valid_space(shape, grid):
     for pos in formatted:
         if pos not in accepted_pos:
             if pos[1] > -1:
-                return False
-    return True
-
+                return False # hình đó chạm vào một vị trí đã có block hoặc ra ngoài lưới
+    return True #hình có thể đặt vào
 
 def check_lost(positions):
     for pos in positions:
@@ -187,7 +185,7 @@ def check_lost(positions):
             return True
     return False
 
-
+# lấy ngẫu nhiên 1 khối ra để chuẩn bị spawn cho người chơi
 def get_shape():
     return Piece(5, 0, random.choice(shapes))
 
