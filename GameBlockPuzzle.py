@@ -19,6 +19,9 @@ block_size = 30
 top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height
 
+background_game = pygame.image.load("./python-game/image/download.jfif")
+background_game = pygame.transform.scale(background_game,(s_width, s_height))
+
 # SHAPE FORMATS
 S = [['.....',
       '.....',
@@ -272,7 +275,8 @@ def max_score():
 
 
 def draw_window(surface, grid, score=0, last_score=0):
-    surface.fill((0, 0, 0))
+    # surface.fill((0, 0, 0))
+    surface.blit(background_game,(0,0))
 
     font = pygame.font.SysFont('comicsans', 60)
     label = font.render('Block Puzzle', 1, (255, 255, 255))
@@ -328,6 +332,9 @@ def main_menu(win):
     score = 0
 
     while run:
+
+        win.blit(background_game, (0,0))
+
         grid = create_grid(locked_positions)
         fall_time += clock.get_rawtime()
         level_time += clock.get_rawtime()

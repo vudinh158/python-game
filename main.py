@@ -1,13 +1,16 @@
 import pygame
 import sys
-from GameBlockPuzzle import draw_text_middle, main_menu,s_width,s_height
+from GameBlockPuzzle import draw_text_middle, main_menu,s_width,s_height, background_game
 
 strStart = "Press Any Key To Play"
 
 def main(win):
     run = True
     while run:
-        win.fill((0, 0, 0))
+        
+        # win.fill((0, 0, 0))
+        win.blit(background_game, (0,0))
+
         draw_text_middle(win, strStart, 60, (255, 255, 255))
         pygame.display.update()
         for event in pygame.event.get():
