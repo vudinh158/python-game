@@ -130,7 +130,7 @@ shapes = [S, Z, I, O, J, L, T]
 # Tạo màu ngẫu nhiên khi spawn shape mới
 
 def random_color():
-    return tuple(random.randint(0, 255) for _ in range(3))
+    return tuple(random.randint(128, 255) for _ in range(3))
 
 
 class Piece(object):
@@ -354,6 +354,7 @@ def main_menu(win):
                 change_piece = True
 
         for event in pygame.event.get():
+            keys = pygame.key.get_pressed()
             if event.type == pygame.QUIT:
                 run = False
                 pygame.display.quit()
@@ -367,7 +368,7 @@ def main_menu(win):
                     current_piece.x += 1
                     if not (valid_space(current_piece, grid)):
                         current_piece.x -= 1
-                if event.key == pygame.K_DOWN:
+                if keys[pygame.K_DOWN]:
                     current_piece.y += 1
                     if not (valid_space(current_piece, grid)):
                         current_piece.y -= 1
@@ -397,7 +398,8 @@ def main_menu(win):
         pygame.display.update()
 
         if check_lost(locked_positions):
-            win.fill((0,0,0))
+            # win.fill((0,0,0))
+            win.blit(background_game, (0,0))
             draw_text_middle(win, "YOU LOST!", 80, (255, 255, 255))
             pygame.display.update()
             pygame.time.delay(1500)
