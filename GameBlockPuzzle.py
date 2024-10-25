@@ -19,7 +19,7 @@ block_size = 30
 top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height
 
-background_game = pygame.image.load("./python-game/image/download.jfif")
+background_game = pygame.image.load("./python-game/image/background_blockpuzzle.png")
 background_game = pygame.transform.scale(background_game,(s_width, s_height))
 
 # SHAPE FORMATS
